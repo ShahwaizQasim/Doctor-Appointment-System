@@ -7,7 +7,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
-      <DoctorSection />
+      <DoctorSection isHome={true} />
     </div>
   );
 }
