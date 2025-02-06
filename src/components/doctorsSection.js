@@ -19,7 +19,7 @@ import {
 import { categories, doctors } from "@/lib/data"
 import { Button } from "./ui/button";
 import Link from "next/link";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 
 export default function DoctorSection({ isHome }) {
@@ -59,14 +59,46 @@ export default function DoctorSection({ isHome }) {
                     filtered.map((allDoctors) => {
                         return <Card key={allDoctors.id}>
                             <CardHeader className="para">
-                                <CardTitle>{allDoctors.name}</CardTitle>
-                                <CardDescription>{allDoctors.category}</CardDescription>
+                                <CardTitle>
+                                    <div className="flex gap-4">
+                                        <div>
+                                            <Avatar>
+                                                <AvatarImage src="https://github.com/shadcn.png" />
+                                                <AvatarFallback>CN</AvatarFallback>
+                                            </Avatar>
+                                        </div>
+                                        <div>
+                                            <p className="pt-1 font-normal">{allDoctors.name}</p>
+                                            <p className="pt-2 font-normal">{allDoctors.category}</p>
+                                        </div>
+                                    </div>
+                                </CardTitle>
                             </CardHeader>
-                            <CardContent className="para">
-                                <p>{allDoctors.hospital}</p>
-                                <p>Doctor Appointment Time: <span className="font-semibold">{allDoctors.appointmentTime}</span></p>
-                                <p>Doctor Fees: <span className="font-semibold">${allDoctors.fees}</span></p>
+                            <CardContent>
+                                <div className="flex justify-between para">
+                                    <p className="font-medium">Gender</p>
+                                    <p>{allDoctors.gender}</p>
+                                </div>
+                                <div className="flex justify-between para">
+                                    <p className="font-medium">Hospital</p>
+                                    <p>{allDoctors.hospital}</p>
+                                </div>
+                                <div className="flex justify-between para">
+                                    <p className="font-medium">Appointment Time</p>
+                                    <p>{allDoctors.appointmentTime}</p>
+                                </div>
+                                <div className="flex justify-between para">
+                                    <p className="font-medium">Doctor Fees</p>
+                                    <p>${allDoctors.fees}</p>
+                                </div>
                             </CardContent>
+                            <CardFooter>
+                                <Link href={`/doctors/${allDoctors.id}`}>
+                                    <Button variant="outline" className={"bg-black text-white rounded para text-[12px] font-normal"}>
+                                        Book Your Appointment
+                                    </Button>
+                                </Link>
+                            </CardFooter>
                         </Card>
                     })
                 }

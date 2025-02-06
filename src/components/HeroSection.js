@@ -18,8 +18,11 @@ function HeroSection() {
                         chambray.
                     </p>
                     <div className="flex justify-center gap-3">
-                        <Button variant={"outline"}>
+                        <Button variant={"outline"} className={"bg-white text-black rounded para text-[12px] font-normal hover:bg-black hover:text-white w-full"}>
                             Find Doctor You Need
+                        </Button>
+                        <Button variant={"outline"} className={"bg-black text-white rounded para text-[12px] font-normal w-full"}>
+                            Apply As Doctor
                         </Button>
 
                     </div>
