@@ -16,6 +16,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { categories, doctors } from "@/lib/data"
 
 
 
@@ -30,17 +31,34 @@ export default function DoctorSection() {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectLabel>Fruits</SelectLabel>
-                            <SelectItem className="para" value="apple">Apple</SelectItem>
-                            <SelectItem className="para" value="banana">Banana</SelectItem>
-                            <SelectItem className="para" value="blueberry">Blueberry</SelectItem>
-                            <SelectItem className="para" value="grapes">Grapes</SelectItem>
-                            <SelectItem className="para" value="pineapple">Pineapple</SelectItem>
+                            {
+                                categories.map((categoriesData) => {
+                                    console.log(categoriesData);
+                                    return <SelectItem key={categoriesData} className="para bg-white text-black pointer hover:bg-black hover:text-white"
+                                        value={categoriesData}>{categoriesData}</SelectItem>
+                                })
+                            }
                         </SelectGroup>
                     </SelectContent>
                 </Select>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 px-4">
+
+                {
+                    doctors.map((allDoctors) => {
+                        return <Card>
+                            <CardHeader className="para">
+                                <CardTitle>{allDoctors.name}</CardTitle>
+                                <CardDescription>{allDoctors.category}</CardDescription>
+                            </CardHeader>
+                            <CardContent className="para">
+                                <p>{allDoctors.hospital}</p>
+                                <p>Doctor Appointment Time: <span className="font-semibold">{allDoctors.appointmentTime}</span></p>
+                                <p>Doctor Fees: <span className="font-semibold">{allDoctors.fees}</span></p>
+                            </CardContent>
+                        </Card>
+                    })
+                }
                 <Card>
                     <CardHeader>
                         <CardTitle>Card Title</CardTitle>
