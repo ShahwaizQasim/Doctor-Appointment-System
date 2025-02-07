@@ -20,6 +20,7 @@ import { categories, doctors } from "@/lib/data"
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { PersonIcon, PlusIcon, ClockIcon, HomeIcon } from "@radix-ui/react-icons";
 
 
 export default function DoctorSection({ isHome }) {
@@ -76,26 +77,38 @@ export default function DoctorSection({ isHome }) {
                             </CardHeader>
                             <CardContent>
                                 <div className="flex justify-between para">
-                                    <p className="font-medium">Gender</p>
+                                    <div className="flex gap-2">
+                                        <PersonIcon className="mt-1" />
+                                        <p className="font-medium">Gender</p>
+                                    </div>
                                     <p>{allDoctors.gender}</p>
                                 </div>
                                 <div className="flex justify-between para">
-                                    <p className="font-medium">Hospital</p>
+                                    <div className="flex gap-2">
+                                        <PlusIcon className="mt-1" />
+                                        <p className="font-medium">Hospital</p>
+                                    </div>
                                     <p>{allDoctors.hospital}</p>
                                 </div>
                                 <div className="flex justify-between para">
-                                    <p className="font-medium">Appointment Time</p>
+                                    <div className="flex gap-2">
+                                        <ClockIcon className="mt-1" />
+                                        <p className="font-medium">Appointment Time</p>
+                                    </div>
                                     <p>{allDoctors.appointmentTime}</p>
                                 </div>
                                 <div className="flex justify-between para">
-                                    <p className="font-medium">Doctor Fees</p>
+                                    <div className="flex gap-2">
+                                        <HomeIcon className="mt-1" />
+                                        <p className="font-medium">Fees</p>
+                                    </div>
                                     <p>${allDoctors.fees}</p>
                                 </div>
                             </CardContent>
                             <CardFooter>
                                 <Link href={`/doctors/${allDoctors.id}`}>
                                     <Button variant="outline" className={"bg-black text-white rounded para text-[12px] font-normal"}>
-                                        Book Your Appointment
+                                        See Detail
                                     </Button>
                                 </Link>
                             </CardFooter>

@@ -8,6 +8,7 @@ import {
     MenubarTrigger,
 } from "@/components/ui/menubar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Link from "next/link"
 
 export default function Navbar() {
     return (
@@ -16,21 +17,22 @@ export default function Navbar() {
                 <h1 className="font-mono text-3xl">LOGO</h1>
                 <Menubar>
                     <MenubarMenu>
-                        <MenubarTrigger className={"border-none bg-slate-300"}>
+                        <MenubarTrigger className={"border-none bg-slate-300 cursor-pointer"}>
                             <Avatar>
                                 <AvatarImage src="https://github.com/shadcn.png" />
                                 <AvatarFallback>CN</AvatarFallback>
                             </Avatar>
                         </MenubarTrigger>
                         <MenubarContent>
-                            <MenubarItem>
-                                New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-                            </MenubarItem>
-                            <MenubarItem>New Window</MenubarItem>
-                            <MenubarSeparator />
-                            <MenubarItem>Share</MenubarItem>
-                            <MenubarSeparator />
-                            <MenubarItem>Print</MenubarItem>
+                            <Link href={'/profile'}>
+                                <MenubarItem className="cursor-pointer"> Profile </MenubarItem>
+                            </Link>
+                            <hr />
+                            <Link href={'/appointments'}>
+                                <MenubarItem className="cursor-pointe">My Appointment</MenubarItem>
+                            </Link>
+                            <hr />
+                            <MenubarItem className="cursor-pointer">Logout</MenubarItem>
                         </MenubarContent>
                     </MenubarMenu>
                 </Menubar>

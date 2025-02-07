@@ -8,8 +8,7 @@ export default function DoctorDetail({ params }) {
     const doctorsFind = doctors.find((data) => data.id == params.id);
 
     return (
-        <section className="text-gray-600 body-font overflow-hidden">
-            <div className="container px-5 py-24 mx-auto">
+            <div className="container my-20 mx-auto">
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
                     <div className="lg:w-1/2 relative w-full lg:h-auto h-64 object-cover object-center rounded">
                         <Image
@@ -124,7 +123,7 @@ export default function DoctorDetail({ params }) {
                                 </a>
                             </span>
                         </div>
-                        <p className="leading-relaxed">
+                        <p className="para">
                             Fam locavore kickstarter distillery. Mixtape chillwave tumeric
                             sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps
                             cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine
@@ -155,7 +154,6 @@ export default function DoctorDetail({ params }) {
                     </div>
                 </div>
             </div>
-        </section>
 
     )
 }
