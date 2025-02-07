@@ -37,38 +37,78 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-const data = [
+export const data = [
     {
-        id: "m5gr84i9",
-        amount: 316,
-        status: "success",
-        email: "ken99@yahoo.com",
+        user: "John Doe",
+        appointmentTime: "9:30 AM",
+        status: "Confirmed",
+        appointmentDate: "2024-11-01",
+        doctor: "Dr. Sarah Johnson",
     },
     {
-        id: "3u1reuv4",
-        amount: 242,
-        status: "success",
-        email: "Abe45@gmail.com",
+        user: "Emma Wilson",
+        appointmentTime: "2:15 PM",
+        status: "Pending",
+        appointmentDate: "2024-11-03",
+        doctor: "Dr. Robert Smith",
     },
     {
-        id: "derv1ws0",
-        amount: 837,
-        status: "processing",
-        email: "Monserrat44@gmail.com",
+        user: "Michael Brown",
+        appointmentTime: "10:45 AM",
+        status: "Cancelled",
+        appointmentDate: "2024-11-05",
+        doctor: "Dr. Emily Davis",
     },
     {
-        id: "5kma53ae",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
+        user: "Sophia Lee",
+        appointmentTime: "11:30 AM",
+        status: "Confirmed",
+        appointmentDate: "2024-11-08",
+        doctor: "Dr. Michael Brown",
     },
     {
-        id: "bhqecj4p",
-        amount: 721,
-        status: "failed",
-        email: "carmella@hotmail.com",
+        user: "Daniel Parker",
+        appointmentTime: "3:00 PM",
+        status: "Pending",
+        appointmentDate: "2024-11-09",
+        doctor: "Dr. Lisa Thompson",
     },
-]
+    {
+        user: "Olivia Garcia",
+        appointmentTime: "8:15 AM",
+        status: "Confirmed",
+        appointmentDate: "2024-11-12",
+        doctor: "Dr. Daniel Wilson",
+    },
+    {
+        user: "James Anderson",
+        appointmentTime: "2:30 PM",
+        status: "Confirmed",
+        appointmentDate: "2024-11-15",
+        doctor: "Dr. Olivia Martinez",
+    },
+    {
+        user: "Rachel Evans",
+        appointmentTime: "9:45 AM",
+        status: "Cancelled",
+        appointmentDate: "2024-11-18",
+        doctor: "Dr. Sophia Lee",
+    },
+    {
+        user: "William Taylor",
+        appointmentTime: "1:00 PM",
+        status: "Pending",
+        appointmentDate: "2024-11-20",
+        doctor: "Dr. Christopher King",
+    },
+    {
+        user: "Grace Martin",
+        appointmentTime: "11:00 AM",
+        status: "Confirmed",
+        appointmentDate: "2024-11-23",
+        doctor: "Dr. Rachel Evans",
+    },
+];
 
 export const columns = [
     {
@@ -94,44 +134,46 @@ export const columns = [
         enableHiding: false,
     },
     {
-        accessorKey: "status",
-        header: "Status",
+        accessorKey: "doctor",
+        header: "Doctor Name",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("status")}</div>
+            <div className="capitalize">{row.getValue("doctor")}</div>
         ),
     },
     {
-        accessorKey: "email",
+        accessorKey: "user",
         header: ({ column }) => {
             return (
                 <Button
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Email
+                    Patient Name
                     <ArrowUpDown />
                 </Button>
             )
         },
-        cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+        cell: ({ row }) => <div className="lowercase">{row.getValue("user")}</div>,
     },
     {
-        accessorKey: "amount",
-        header: () => <div className="text-right">Amount</div>,
-        cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("amount"))
-
-            // Format the amount as a dollar amount
-            const formatted = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-            }).format(amount)
-
-            return <div className="text-right font-medium">{formatted}</div>
-        },
+        accessorKey: "appointmentDate",
+        header: "Appointment Date",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("appointmentDate")}</div>,
     },
+    {
+        accessorKey: "appointmentTime",
+        header: "Appointment Time",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("appointmentTime")}</div>,
+    },
+    {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("status")}</div>,
+    },
+
     {
         id: "actions",
+        header: "Actions",
         enableHiding: false,
         cell: ({ row }) => {
             const payment = row.original
@@ -187,7 +229,7 @@ export default function AppointmentsTable() {
     })
 
     return (
-        <div className="container mx-auto min-h-screen">
+        <div className="container mx-auto min-h-screen my-10">
             <div className="w-full">
                 <div className="flex items-center py-4 para">
                     <Input
@@ -225,9 +267,9 @@ export default function AppointmentsTable() {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
-                <div className="rounded-md border">
+                <div className="rounded-md border mt-5">
                     <Table>
-                        <TableHeader>
+                        <TableHeader className={"para"}>
                             {table.getHeaderGroups().map((headerGroup) => (
                                 <TableRow key={headerGroup.id}>
                                     {headerGroup.headers.map((header) => {
@@ -245,7 +287,7 @@ export default function AppointmentsTable() {
                                 </TableRow>
                             ))}
                         </TableHeader>
-                        <TableBody>
+                        <TableBody className={"para"}>
                             {table.getRowModel().rows?.length ? (
                                 table.getRowModel().rows.map((row) => (
                                     <TableRow
@@ -276,29 +318,9 @@ export default function AppointmentsTable() {
                     </Table>
                 </div>
                 <div className="flex items-center justify-end space-x-2 py-4">
-                    <div className="flex-1 text-sm text-muted-foreground">
+                    <div className="flex-1 text-sm text-muted-foreground para">
                         {table.getFilteredSelectedRowModel().rows.length} of{" "}
                         {table.getFilteredRowModel().rows.length} row(s) selected.
-                    </div>
-                    <div className="space-x-2">
-                        <Button
-                            variant="outline"
-                              className="para"
-                            size="sm"
-                            onClick={() => table.previousPage()}
-                            disabled={!table.getCanPreviousPage()}
-                        >
-                            Previous
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="para"
-                            size="sm"
-                            onClick={() => table.nextPage()}
-                            disabled={!table.getCanNextPage()}
-                        >
-                            Next
-                        </Button>
                     </div>
                 </div>
             </div>
