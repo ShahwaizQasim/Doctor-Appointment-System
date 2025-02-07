@@ -233,10 +233,10 @@ export default function AppointmentsTable() {
             <div className="w-full">
                 <div className="flex items-center py-4 para">
                     <Input
-                        placeholder="Filter emails..."
-                        value={(table.getColumn("email")?.getFilterValue()) ?? ""}
+                        placeholder="Search Patient..."
+                        value={(table.getColumn("user")?.getFilterValue()) ?? ""}
                         onChange={(event) =>
-                            table.getColumn("email")?.setFilterValue(event.target.value)
+                            table.getColumn("user")?.setFilterValue(event.target.value)
                         }
                         className="max-w-sm"
                     />
